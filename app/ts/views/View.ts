@@ -1,3 +1,4 @@
+
 export abstract class View<T> {
     private _elemento: JQuery;
     private _escape: boolean;
@@ -5,6 +6,7 @@ export abstract class View<T> {
         this._elemento = $(seletor);
         this._escape = escape;
     }
+
     update(model: T) {
         let template = this.template(model);
         if (this._escape)
