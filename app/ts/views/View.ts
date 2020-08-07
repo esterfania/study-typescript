@@ -5,10 +5,9 @@ export abstract class View<T> {
         this._elemento = $(seletor);
         this._escape = escape;
     }
-
     update(model: T) {
         let template = this.template(model);
-        if(this._escape)
+        if (this._escape)
             template = template.replace(/<script>[\s\S]*?<\/script>/g, '')
         this._elemento.html(template);
     }

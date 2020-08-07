@@ -1,5 +1,6 @@
 import { Negociacao, Negociacoes } from '../models/index';
 import { NegociacoesView, MensagemView } from '../views/index';
+import { logarTempoExecucao } from '../helpers/decorators/index';
 
 export class NegociacaoController {
     private _inputData: JQuery;
@@ -14,17 +15,17 @@ export class NegociacaoController {
         this._inputQuantidade = $("#quantidade");
         this._inputValor = $("#valor");
     }
-
+    
+    @logarTempoExecucao()
     adiciona(event: Event): void {
         event.preventDefault();
 
         let data = new Date(this._inputData.val().replace("/-/g", ","))
-        if(!this._validaDiaUtil(data))
-        {
+        if (!this._validaDiaUtil(data)) {
             this._mensagemView.update("Negociações apenas em dias úteis!")
             return
         }
-    
+
         const negociacao = new Negociacao(
             data,
             parseInt(this._inputQuantidade.val()),
@@ -36,15 +37,14 @@ export class NegociacaoController {
         this._mensagemView.update("Negociação adicionada com sucesso!");
     }
 
-    private _validaDiaUtil (data: Date)
-    {
+    private _validaDiaUtil(data: Date) {
         return data.getDay() != DiaDaSemana.Sabado && data.getDay() != DiaDaSemana.Domingo
-  
+
     }
 }
 
 enum DiaDaSemana {
-    
+
     Domingo,
     Segunda,
     Terça,
@@ -53,3 +53,4 @@ enum DiaDaSemana {
     Sexta,
     Sabado
 }
+
