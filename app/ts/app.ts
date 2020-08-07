@@ -1,4 +1,4 @@
-import {NegociacaoController} from './controllers/NegociacaoController';
+import { NegociacaoController } from './controllers/NegociacaoController';
 
 const controller = new NegociacaoController();
 $(".form")
