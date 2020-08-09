@@ -1,1 +1,1 @@
-export * from './NegociacaoParcialService';
+export * from './NegociacaoService';
